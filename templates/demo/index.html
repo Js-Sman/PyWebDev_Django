@@ -1,0 +1,33 @@
+<comment
+Das hier ist die HTML beschreibung einer Seite.
+Sie wird mit DOCTYPE geschrieben, das ist eine erweiterung von basic HTML.
+
+Beim render aufruf von dieser Seite wurde ein context mit übergeben.
+Über diesen context kann auf die dict Variable now zugegriffen werden.
+></comment>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+
+<h1>
+    Index der Demo Applikation
+</h1>
+<p>
+    Uhrzeit: {{ now }}
+</p>
+
+{% if time.tm_hour < 12 %}
+    <p>Guten Morgen!</p>
+{%  elif time.tm_hour < 18 %}
+    <p>Guten Tag!</p>
+{%  else %}
+    <p>Guten Abend!</p>
+{% endif %}
+
+</body>
+</html>
