@@ -14,8 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
+# Das hier stellt die Hauptseite dar die unter dem local host aufgerufen wird
+# von hier aus werden die routings angegeben
+# jede applikation muss hier als url eingetragen werden um diese über die Hauptseite zu erreichen
 urlpatterns = [
+    path('demo/', include('PyWebDev_DemoApplikation.urls')),
     path("admin/", admin.site.urls),
 ]

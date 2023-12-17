@@ -1,9 +1,9 @@
-############## Aufgabe 1 #################
+############## Aufgabe "Hello World" #################
 
 # var = print("Hello World")
 # print(var)
 
-############## Aufgabe 2 #################
+############## Aufgabe "Variablen Scope" #################
 #
 # def read_variablen():
 #     # Innerhalb einer Funktion definierte Variablen
@@ -35,5 +35,5 @@
 # print(lokale_variable)  # Diese Variable ist nicht innerhalb vom global Scope definiert
 # # und somit nicht verfügbar für lese oder schreib operationen
 
-############## Aufgabe 3 #################
+
 
