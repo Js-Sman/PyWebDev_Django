@@ -13,9 +13,10 @@ def index(request):
     # dynamische Inhalte können hier demnach ganz einfach erzeugt werden und der HTML seite mit übergeben werden
     timestring = time.strftime("%H:%M:%S")  # So würde man ein time format selber definieren
     context = {'now': timestring,
-               'time': time.localtime()}  # der kontext wird als dict übergeben
+               'time': time.localtime(),
+               'list': [2,3,4,5,6,7,8,9,10,11]}  # der kontext wird als dict übergeben
     # um im HTML file die keys zu referenzieren
 
-    return render(request, 'demo/index.html', context)  # Mit dieser Zeile gebe ich an
+    return render(request, 'demo/index_mitBaseVererbung.html', context)  # Mit dieser Zeile gebe ich an
     # wo die HTML seite beschrieben ist → diese wird als Antwort mit dem context
     # gerendert und zurück an den Server geschickt

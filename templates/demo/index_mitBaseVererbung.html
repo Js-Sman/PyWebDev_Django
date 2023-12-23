@@ -1,0 +1,41 @@
+<!--
+Wenn man Template Vererbung benutzt, ist der gesammte wrapper in der base 
+in den Kind html files werden nurnoch die platzhalter -> blöcke der Eltern html beschrieben
+
+Dieses html erzeugt genau dieselbe Seite wie die index_ohneVererbung 
+ 
+-->
+{% extends "base.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block content %}
+    	<!--
+    	    in der base-html steht der content block im body tag 
+    	    deshalb landet alles was ich hier im content block schreib auch im body der html
+    	-->
+    <h1>
+        Index der Demo Applikation mit Vererbung
+    </h1>
+    <p>
+        Uhrzeit: {{ now }}
+    </p>
+    
+    
+    {% if time.tm_hour < 12 %}
+        <p>Guten Morgen!</p>
+    {%  elif time.tm_hour < 18 %}
+        <p>Guten Tag!</p>
+    {%  else %}
+        <p>Guten Abend!</p>
+    {% endif %}
+    
+    {% for value in list %}
+        {%  if forloop.counter|divisibleby:2 == 0 %}
+            <p> {{ value }}</p>
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}
