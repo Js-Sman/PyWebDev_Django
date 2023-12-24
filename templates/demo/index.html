@@ -7,28 +7,20 @@
 {% block content %}
     	<!--
     	    in der base-html steht der content block im body tag 
-    	    deshalb landet alles was ich hier im content block schreib auch im body der html
+    	    deshalb landet alles, was ich hier im content block schreib auch im body der html
     	-->
-    <h1>
-        Index der Demo Applikation mit Vererbung
-    </h1>
-    <p>
-        Uhrzeit: {{ now }}
-    </p>
+    <!--Die Klasse jumbotron ist in Bootstrap enthalten und sorgt einfach für ein gewisses Styling-->
+    <div class="jumbotron">
+        <h1 class="display-4"> News </h1>
+    </div>
+
+    <!--Hier werden alle notices durchlaufen und entsprechend angezeigt -->
+    {% for notice in notices %}
     
-    
-    {% if time.tm_hour < 12 %}
-        <p>Guten Morgen!</p>
-    {%  elif time.tm_hour < 18 %}
-        <p>Guten Tag!</p>
-    {%  else %}
-        <p>Guten Abend!</p>
-    {% endif %}
-    
-    {% for value in list %}
-        {%  if forloop.counter|divisibleby:2 == 0 %}
-            <p> {{ value }}</p>
-        {% endif %}
+        <h3>{{ notice.notice_title }}</h3>
+        <p>{{ notice.notice_text }}</p>
+        
     {% endfor %}
+
 
 {% endblock %}

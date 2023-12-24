@@ -2,7 +2,8 @@ from django.urls import path
 from . import views  # Nötig um von hier aus auf die verschiedenen views zu routen
 
 urlpatterns = [
-    path('learning', views.index_learning, name='index_learning'),
+    path('learning1', views.index_learning1, name='index_learning1'),
+    path('learning2', views.index_learning2, name='index_learning2'),
     path('', views.index, name='index'),
 ]
 
