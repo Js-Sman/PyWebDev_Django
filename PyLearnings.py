@@ -193,12 +193,31 @@ from unittest import case
 # sqlite> DELETE FROM Student
 #    ...> WHERE matrikel = 1000;
 
-
-
-
-
-
-
+############## Aufgabe "Klassen -> Vererbung" #################
+#
+# class A():
+#     def name(self):
+#         return "A"
+#
+#     def printInfo(self):
+#         print(self.name())
+#
+#     def __add__(self, other):
+#         # Mit den dunder methods kann inbuild verhalten überschrieben werden
+#         return self.name() + other.name()
+#
+# class B(A):
+#     def name(self):
+#         # Mit dem Schlüsselwort Super werden explizit die Methoden der Elternklasse ausgeführt
+#         return super().name() + "B"
+#
+#
+# b = B()
+# a = A()
+# print(b.name())
+# print(b.printInfo())    # Weil B von A erbt kann B auf die in a definierte print info methode aufrufen
+# # Achtung die Funktion printet schon und der Rückgabewert der Funktion ist none -> es entstehen 2 ausgaben
+# print(b + a)    # Das funktioniert nur weil die add methode in A überschrieben wurde
 
 
 
