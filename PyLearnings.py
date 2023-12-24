@@ -115,3 +115,93 @@ from unittest import case
 #         listSing.append((i, x ** 2))
 #
 # print(f"listSing: {listSing}")
+
+############## Aufgabe "Dicts" #################
+
+# dict1 = {}
+# # Dictionarys konnen nicht "appended" werden
+# # Zum befüllen müssen einfach key value paare angegeben werden
+# # Keys and Values können beliebige Objekte sein
+# dict1["key1"] = "value1"
+# dict1["key2"] = 2
+# dict1[3] = "value3"
+# print(dict1)
+#
+# print(dict1["key1"]) # wenn man den Key referenziert, bekommt man das Value
+#
+# print(list(dict1.values()))   # Alle Values
+# print(dict1.keys()) # Alle Keys
+# print(dict1.items())    # Tupel aller items
+#
+# for element in dict1:
+#     # Das Iteriert über alle elemente -> die elemente sind definiert durch die keys
+#     # so werden nur die key ausgegeben
+#     print(element)
+#     print(dict1[element]) # so könnte man auch hier auf die values kommen
+#
+# for element in dict1.values():
+#     # So referenziert man nur die values
+#     print(element)
+#
+# for element in dict1.items():
+#     # So iteriert man über die tupel key value paare
+#     print(element)
+#     print(element[0])
+#     print(element[1])
+#
+# for key,value in dict1.items():
+#     # Und so sind key und value von vornherein aufgetrennt -> best practice
+#     print(key,value)
+
+############## Aufgabe "SQLite Kommandozeilenbefehle" #################
+# # Tabelle erzeugen
+# sqlite> CREATE TABLE Student
+#    ...> (name TEXT,matrikel INTREGER, schnitt REAL);
+#
+# # Werte Einfügen
+# sqlite> INSERT INTO Student
+#    ...> (name, matrikel, schnitt)
+#    ...> VALUES
+#    ...> ("Jens", 100, 2,3),
+#    ...> ("Grae", 101, 1,0),
+#    ...> ("Dude", 101, 1,0);
+#
+# # Alles ausgeben
+# sqlite> SELECT *
+#    ...> FROM Student;
+#
+# # nur name von "bedingung" ausgeben
+# sqlite> SELECT name
+#    ...> FROM Student
+#    ...> WHERE matrikel = 100;
+#
+# # Durchschnitt alle Studenten schnitte mit nummer über 100
+# sqlite> SELECT AVG(schnitt)
+#    ...> FROM Student
+#    ...> WHERE matrikel > 100;
+#
+# # Alle Matrikelnummern *10
+# sqlite> UPDATE Student
+#    ...> SET matrikel = matrikel*10;
+#
+# # Nur den Schnitt von matrikelnummer 1020 anpassen
+# sqlite> UPDATE Student
+#    ...> SET schnitt = schnitt -0.1
+#    ...> WHERE matrikel = 1020;
+#
+# # Zeile mit bedingung löschen
+# sqlite> DELETE FROM Student
+#    ...> WHERE matrikel = 1000;
+
+
+
+
+
+
+
+
+
+
+
+
+
