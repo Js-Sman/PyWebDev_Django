@@ -5,6 +5,7 @@ urlpatterns = [
     path('learning1', views.index_learning1, name='index_learning1'),
     path('learning2', views.index_learning2, name='index_learning2'),
     path('', views.index, name='index'),
+    path('new', views.new_notice, name='new'),
 ]
 
 # der 1. Parameter in path() würde angeben was noch in der url steht → aktuell kommt man hier hin, indem man in die url

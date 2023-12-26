@@ -21,6 +21,23 @@
         <p>{{ notice.notice_text }}</p>
         
     {% endfor %}
+    
+    <!-- Button mit Bootstrap parameter für Styling erzeugen-->
+    <p><a href="{% url 'new' %}" class="btn btn-secondary btn-lg" role="button">Neue Nachricht</a></p>
+    <!-- mit dem href verweist man auf eine url die in den urls.py hinterlgt ist -> hier spielt der name eine rolle -->
+    
+    <!-- So würde man mit reinem HTML ein Formular erzeugen 
+    <form action="/new" method="post">
+        Vorname:<br>
+        <input type="text" name="firstname" value="Hans">
+        <br>
+        Nachname:<br>
+        <input type="text" name="firstname" value="Musterman">
+        <br>
+        <br>
+        <input type="submit" value="Speichern">
+    </form>
+    -->
 
 
 {% endblock %}
