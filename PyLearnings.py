@@ -1,4 +1,6 @@
+import logging
 from unittest import case
+
 
 ############## Aufgabe "Hello World" #################
 
@@ -154,6 +156,7 @@ from unittest import case
 #     print(key,value)
 
 ############## Aufgabe "SQLite Kommandozeilenbefehle" #################
+
 # # Tabelle erzeugen
 # sqlite> CREATE TABLE Student
 #    ...> (name TEXT,matrikel INTREGER, schnitt REAL);
@@ -219,8 +222,102 @@ from unittest import case
 # # Achtung die Funktion printet schon und der Rückgabewert der Funktion ist none -> es entstehen 2 ausgaben
 # print(b + a)    # Das funktioniert nur weil die add methode in A überschrieben wurde
 
+############## Aufgabe "Mapping, Filtering & Lambda" #################
+
+# # Funktionen können auch übergabeparameter sein
+# def say_hello():
+#     print("Hello")
+#
+#
+# def do_three_times(func):
+#     for i in range(3):
+#         func()
+#
+#
+# do_three_times(say_hello)
+#
+# # Maps
+# list1 = ["1","2","3"]   # Liste aus stings
+# map_object = map(int, list1)
+#
+# print(map_object)   # Das MapObject ist ein iterator kein träger der werte
+#
+# for i in map_object:    # Beim mapping wird die Funktion auf alle teile der Liste angewendet und einmalig im iterator
+#     # gespeichert
+#     print(i)    # Das sind jetzt Integer werte -> jeder String in list1 wurde auf INT gecastet
+#
+# print(list1)    # DIe liste bleibt durch das mapping unverändert
+# list2 = list(map_object)    #So kann der Iterator in eine Liste umgewandelt werden
+# print(list2)    # ACHTUN!! Der Iterrator kann nur einmal gelesen werden-> danach ist er wieder leer
+#
+# map_object = map(int, list1)
+# list3 = list(map_object)
+# print(list3)    # Hier kommt jetzt tatsächlich eine Liste auf integern an
+#
+# # Filter
+# # Filter sind ähnlich wie maps nur dass die Funktion selbst beschrieben ist
+#
+# def filterfunc(item):
+#     # Eine Filter funktion muss immer bool zurückliefern
+#     # Anhand dessen wird die Liste gefiltert -> Werte die im Filter true ergeben werden übernommen
+#     return (item % 2 == 0)
+#
+# list4 = [1,2,3,4,5,6,7,8,9]
+# filtered_list = filter(filterfunc, list4)   # Aufg alle elemente der list4 wird die filterfunc angewendet
+# # Wenn true zurück kommt wird der Wert in die filtered liste übernommen
+# print(filtered_list)    #ACHTING!! hzier kommt auch erstmal nur ein einmaliger iterator zurück wie bei einer map
+#
+# list5 = list(filtered_list) # die Iteratoren zu einer Liste machen
+# print(list5)
+#
+# # Lambda
+# # Lambda Funktionen sind einfach inline funktionen die nicht auserhalb dieser zeile aufrufbar sind
+# # Mit ihnen können Filter realisiert werden weil man dann keine extra deklarierte funktion für den filter braucht
+# # Man kann lambdafunktionen allerdings einer variable zuweisen
+#
+# lambdafunc = lambda item: item % 2 == 0
+# filtered_list_lambda = filter(lambdafunc, list4)   # Hier passiert jetzt das gleiche wie oben mit der filterfunc
+# print(filtered_list_lambda) #auch hier nur Iterator
+# list6 = list(filtered_list_lambda)
+# print(list6)
+#
+# filtered_list_lambda_compact = list(filter(lambda item: item % 3 == 0, list4))  # So kann man jetzt mit inline lambda
+# #sehr schnell in einer zeile eine neue liste erzeugen die gefiltert ist
+# print(filtered_list_lambda_compact)
 
 
-
-
+############## Aufgabe "Logging" #################
+#
+# # Ein logger wird niemals mit "new" initialisiert sondern immer mit "getLogger" aus der bib gezogen
+# logger = logging.getLogger("TestLogger")
+#
+# logger.addHandler(logging.StreamHandler()) # So wird der Log in die Console geschrieben
+# logger.addHandler(logging.FileHandler("test.log", encoding="UTF-8", mode="w")) # Sor der Log in einem File mitgheschrieben
+# # mode: a für Anhängen und w für immer wieder neu
+#
+# # Die Verschiedenen LEVEL
+# logger.debug('Dies ist die erste Debug-Nachricht')
+# logger.info('Dies ist die erste  Info-Nachricht')
+# logger.warning('Dies ist die erste  Warning-Nachricht')
+# logger.error('Dies ist die erste  Error-Nachricht')
+# logger.critical('Dies ist die erste  Critical-Nachricht')
+# # Default LEVERL ist warning -> dh alles ab waring wird ausgegeben bze im file gespreichert
+#
+# # um das LEVEl anzupassen
+# logger.setLevel(logging.DEBUG)  #Ab jetzt wird alles geloggt
+# logger.debug('Dies ist die zweite  Debug-Nachricht')
+# logger.info('Dies ist die zweite  ne Info-Nachricht')
+# logger.warning('Dies ist die zweite  Warning-Nachricht')
+# logger.error('Dies ist die zweite  Error-Nachricht')
+# logger.critical('Dies die zweite Critical-Nachricht')
+#
+# logger.setLevel(logging.CRITICAL)   # ab jetzt werden nurnoch criticals geloggt
+# logger.debug('Dies ist die dritte  Debug-Nachricht')
+# logger.info('Dies ist die dritte  ne Info-Nachricht')
+# logger.warning('Dies ist die dritte  Warning-Nachricht')
+# logger.error('Dies ist die dritte  Error-Nachricht')
+# logger.critical('Dies die dritte Critical-Nachricht')
+#
+#
+# # Da ein logger immer ein Singelton ist kannn das loglevel zentral im programmeinstieg angepasser werden
 
