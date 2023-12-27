@@ -35,15 +35,16 @@
     {% endfor %}
     
     {% if user.is_authenticated %}
-    <!-- Button mit Bootstrap parameter für Styling erzeugen-->
-    <p>
-        <a href="{% url 'new' %}" 
-           class="btn btn-secondary btn-lg" 
-           role="button">Neue Nachricht</a>
-    </p>
-    <!-- mit dem href verweist man auf eine url die in den urls.py hinterlegt ist 
-    -> hier spielt der name eine rolle -->
+        <!-- Button mit Bootstrap parameter für Styling erzeugen-->
+        <p>
+            <a href="{% url 'new' %}" 
+               class="btn btn-secondary btn-lg" 
+               role="button">Neue Nachricht</a>
+        </p>
+        <!-- mit dem href verweist man auf eine url die in den urls.py hinterlegt ist 
+        -> hier spielt der name eine rolle -->
     {% endif %}
+    
     <!-- So würde man mit reinem HTML ein Formular erzeugen 
     <form action="/new" method="post">
         Vorname:<br>
@@ -58,4 +59,19 @@
     -->
 
 
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="btn btn-primary">Abmelden</a>
+    {%  endif %}
+    
+    {% block login %} 
+        
+        {% if user.is_anonymous %}
+            <a href="{% url 'login' %}" class="btn btn-primary">Anmelden</a>
+        {%  endif %}
+    
+     {% endblock %}
+    
+
 {% endblock %}
+
