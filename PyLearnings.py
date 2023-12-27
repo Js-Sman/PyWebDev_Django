@@ -1,7 +1,6 @@
 import logging
 from unittest import case
 
-
 ############## Aufgabe "Hello World" #################
 
 # var = print("Hello World")
@@ -321,3 +320,63 @@ from unittest import case
 #
 # # Da ein logger immer ein Singelton ist kannn das loglevel zentral im programmeinstieg angepasser werden
 
+
+############## Aufgabe "Exceptions" #################
+#
+# # Basic Exception
+# loop = True
+# while loop:
+#     try:
+#         # Hier stehen die Sachen bei denen etwas Schiefgehen kann
+#         zeahler = int(input("Enter a number: "))
+#         nenner = int(input("Enter a number: "))
+#         print(zeahler / nenner)
+#         loop = False
+#
+#     except ValueError as ve:
+#         print(ve)
+#         print("Please enter a number")
+#
+#     except Exception as e:
+#         # So wird einfach jede Ecxeption die auftauchen kann gefangen und im e objekt gespeichert
+#         print(e.__class__)
+#         print(e)  # das e object printet immer die exception message
+#
+#     except ZeroDivisionError as zde:
+#         print(zde)
+#         print("Please")
+#
+#     # Die Exceptions werden der Reihe nach gefangen -> der ZeroDiv Fehler wird schon vorher
+#     # von der basis Exception abgehandelt und kommt hier garnicht erst an
+#
+#     finally:
+#         print("Goodbye") # Alles, was im Finally block steht, wird auf jedenfall
+#         # ausgeführt, egal welchen Pfad das programm vorher geht
+
+
+# Custom Exeptions
+
+# Man kann auch eigene Exeptions definieren indem man eine Classe erzeugt die von Exceptions erbt
+class MyException(Exception):
+    def __init__(self):
+        # Um die Exception Message zu definieren muss sie dem super ctor übergeben werden
+        self.message = "Dies ist eine custom Exception"
+        super().__init__(self.message)
+
+loop = True
+while loop:
+    name = input("Enter your Name: ")
+
+    try:
+        if name == "Me":
+            raise MyException()  # Eine custom Exception wird mit raise geworfen
+        # Man kann auch definieren, was genau die custom Exception wirft aber das ist jetzt out of scope
+        else:
+            loop = False
+    except MyException as e:
+        print("My Exception wurde gefangen")
+        print(e)
+
+    finally:
+        # Achtung!!! Das hier passiert immer, auch wenn try erfolgreich ist
+        print(f"Die eingabe lautet: {name}")
