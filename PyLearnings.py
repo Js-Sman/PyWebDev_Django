@@ -1,6 +1,7 @@
 import logging
 from unittest import case
 
+
 ############## Aufgabe "Hello World" #################
 
 # var = print("Hello World")
@@ -380,3 +381,35 @@ from unittest import case
 #     finally:
 #         # Achtung!!! Das hier passiert immer, auch wenn try erfolgreich ist
 #         print(f"Die eingabe lautet: {name}")
+
+
+############## Aufgabe "Decorators" #################
+#
+# def sayHello():
+#     print("Hello")
+#
+# def decorator(func):
+#     def wrapper():
+#         print("+++")
+#         func()
+#         print("***")
+#
+#     return wrapper
+#
+# @decorator
+# def sayHello2():
+#     print("Hello2")
+#
+#
+#
+#
+# sayHello()  # Einfache ausführung einer funktion
+#
+# newHello = decorator(sayHello)  # Funktionen können wie variablen übergeben und zugewiesen werden
+#
+# newHello()  # die neue funktion ist dekoriert
+#
+# sayHello2() # Diese Funktion ist mit dem decorator tag versehen -> das wrapped die funktion automatisch
+#
+# # Mit einem Decorator Tag wird eine Methode in eine andere Methode eingebettet
+# # -> diese fügt zusätzliche Funktionalitäten hinzu ohne die Methode zu verändern

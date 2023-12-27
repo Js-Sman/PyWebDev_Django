@@ -2,6 +2,7 @@ import logging
 import time
 from datetime import datetime
 
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.http import HttpResponse, HttpResponseRedirect
@@ -61,6 +62,7 @@ def index(request):
     return render(request, 'demo/index.html', context)
 
 
+@login_required  # Mit deime Decorator von Django wird die Funktion in eine anmeldeüberprüfung gewrapped
 def new_notice(request):
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
@@ -89,6 +91,7 @@ def new_notice(request):
     return render(request, 'demo/edit.html', context)
 
 
+@login_required
 def delete_notice(request, delete_id=None):
     # Hier kommt die id zusammen mit dem request an
     # Die id kommt aus der view weil dort in der href die id der aktuellen notice_id zugewiesen wurde
@@ -98,7 +101,9 @@ def delete_notice(request, delete_id=None):
         try:
             # Die notice mit der entsprechenden id wird aus der Datenbank tabelle gelöscht
             notice = Notice.objects.get(id=delete_id)
-            notice.delete()
+           # print(f"{request.user.id} {notice.id}")
+            if request.user.id == notice.id or request.user.is_staff:   # Das user Object ist auch in den views schon verfügbar
+                notice.delete()
         except Notice.DoesNotExist:
             # Diese Exception kommt von Django und wird geschmissen, wenn die Anfrage auf die Tabelle ins leere geht
             pass

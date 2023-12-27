@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "django.contrib.admin",
-    "django.contrib.auth",
+    "django.contrib.auth",  # diese Applikation liefert standard authentifizierungs möglichkeiten und login seiten
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
@@ -42,11 +42,15 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",  # Diesen Servis braucht
+    # man für die erzeugung von Session-Cookies
+    # -> Cookies werden von Server beim ersten Respond angeheftet und vom Client bei zukünftigen anfragen mitgesendet
     "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",    # Dies ist ein Service der beim Senden und empfangen
+    "django.middleware.csrf.CsrfViewMiddleware",  # Dies ist ein Service der beim Senden und empfangen
     # von Nachrichten einen einzigartigen csrf token generiert und prüft
-    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",  # Dieser Service bieter Decorator
+    # an die den Session-Cookie überprüfen, damit können anmeldedaten
+    # in einer Session als Authentifizierung verwendet werden
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -99,6 +103,9 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+LOGIN_REDIRECT_URL = "/demo/"
+LOGOUT_REDIRECT_URL = "/demo/"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
