@@ -1,5 +1,6 @@
 import logging
 import time
+from datetime import datetime
 
 from django.shortcuts import render, redirect
 from django.utils import timezone
@@ -45,10 +46,11 @@ def index(request):
 
     # Man kann die Datenbank mit filtern auslesen
     ###notices = filter(lambda notice: notice.pub_start <= time.timezone.now(), notices)
-    # Dies ist jedoch eher schlecht weil es die ganze Tabelle lädt und dann filtert
+    # Dies ist jedoch eher schlecht, weil es die ganze Tabelle lädt und dann filtert
+
     # SQL bietet performantere Filteroptionen an
-    # notices = notices.filter(pub_start__lte=timezone.now())  # wendet dengleichen filter an nur besser
-    # notices = notices.filter(pub_end__gte=timezone.now())
+    notices = notices.filter(pub_start__lte=timezone.now())  # wendet den gleichen filter an nur besser
+    notices = notices.filter(pub_end__gte=timezone.now())
     # Schreibweise der DjangoDb Filter: <attribut>__[lte,gte,lt,gt,startswith,isnull] = <vergleichswert>
 
     #ACHTUNG!!
@@ -64,18 +66,25 @@ def new_notice(request):
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
     logger.addHandler(logging.StreamHandler())
+
+    logger.info(f"Request in new notice: {request.method=} {request.path=}")
     if request.method == 'POST':
         form = NoticeForm(request.POST)
-        logger.info(f'POST REQUEST!!!!: {form.is_valid()}')
+
+        logger.info(f"Request in new notice: {request.method=} {request.path=} {form.is_valid()=}")
 
         if form.is_valid():
             notice = Notice()
+
             notice.notice_title = form.cleaned_data['notice_title']
             notice.notice_text = form.cleaned_data['notice_text']
             notice.pub_start = form.cleaned_data['pub_start']
             notice.pub_end = form.cleaned_data['pub_end']
+
             notice.save()
-            return redirect('index')
+
+            return redirect('index')    #Für das redirecten werden auch die names aliase verwendet
+            # die in den urls angegeben sind
 
     context = {'form': NoticeForm()}
     return render(request, 'demo/edit.html', context)

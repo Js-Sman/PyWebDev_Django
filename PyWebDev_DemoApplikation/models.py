@@ -9,7 +9,7 @@ Die SQL Beschreibungen wer Datenbank werden somit von Django übernommen und kö
 # Create your models here.
 
 class Notice(models.Model):
-    # So werden wird die Datenbank angelegt
+    # So wird die Datenbank angelegt
     # Wenn man jetzt migriert wird eine Tabelle angelegt mit 4 Spalten entsprechend der Python beschreibung
     # Die Tabelle heist so wie die Klasse
     notice_title = models.CharField(max_length=80)
