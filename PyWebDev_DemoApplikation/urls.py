@@ -6,6 +6,9 @@ urlpatterns = [
     path('learning2', views.index_learning2, name='index_learning2'),
     path('', views.index, name='index'),
     path('new', views.new_notice, name='new'),
+    path('delete/<int:delete_id>', views.delete_notice, name='delete'),
+    # In die url können in <> alle möglichen parameter mit eingebettet werden
+    # Diese können in den views mit den href's beschrieben werden
 ]
 
 # der 1. Parameter in path() würde angeben was noch in der url steht → aktuell kommt man hier hin, indem man in die url

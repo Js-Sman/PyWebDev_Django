@@ -20,11 +20,22 @@
         <h3>{{ notice.notice_title }}</h3>
         <p>{{ notice.notice_text }}</p>
         
+        <p> 
+        <!-- hier wir für jeden "Medlung Löschen" button eine href generiert, welche die angegebene URL zusammenbaut-->
+            <a href="{% url 'delete' delete_id=notice.id %}"
+               
+               class="btn btn-danger">
+                Meldung löschen
+            </a>
+        
+        </p>
+        
     {% endfor %}
     
     <!-- Button mit Bootstrap parameter für Styling erzeugen-->
     <p><a href="{% url 'new' %}" class="btn btn-secondary btn-lg" role="button">Neue Nachricht</a></p>
-    <!-- mit dem href verweist man auf eine url die in den urls.py hinterlgt ist -> hier spielt der name eine rolle -->
+    <!-- mit dem href verweist man auf eine url die in den urls.py hinterlegt ist 
+    -> hier spielt der name eine rolle -->
     
     <!-- So würde man mit reinem HTML ein Formular erzeugen 
     <form action="/new" method="post">

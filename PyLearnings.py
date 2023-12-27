@@ -352,31 +352,31 @@ from unittest import case
 #     finally:
 #         print("Goodbye") # Alles, was im Finally block steht, wird auf jedenfall
 #         # ausgeführt, egal welchen Pfad das programm vorher geht
-
-
-# Custom Exeptions
-
-# Man kann auch eigene Exeptions definieren indem man eine Classe erzeugt die von Exceptions erbt
-class MyException(Exception):
-    def __init__(self):
-        # Um die Exception Message zu definieren muss sie dem super ctor übergeben werden
-        self.message = "Dies ist eine custom Exception"
-        super().__init__(self.message)
-
-loop = True
-while loop:
-    name = input("Enter your Name: ")
-
-    try:
-        if name == "Me":
-            raise MyException()  # Eine custom Exception wird mit raise geworfen
-        # Man kann auch definieren, was genau die custom Exception wirft aber das ist jetzt out of scope
-        else:
-            loop = False
-    except MyException as e:
-        print("My Exception wurde gefangen")
-        print(e)
-
-    finally:
-        # Achtung!!! Das hier passiert immer, auch wenn try erfolgreich ist
-        print(f"Die eingabe lautet: {name}")
+#
+#
+# # Custom Exeptions
+#
+# # Man kann auch eigene Exeptions definieren indem man eine Classe erzeugt die von Exceptions erbt
+# class MyException(Exception):
+#     def __init__(self):
+#         # Um die Exception Message zu definieren muss sie dem super ctor übergeben werden
+#         self.message = "Dies ist eine custom Exception"
+#         super().__init__(self.message)
+#
+# loop = True
+# while loop:
+#     name = input("Enter your Name: ")
+#
+#     try:
+#         if name == "Me":
+#             raise MyException()  # Eine custom Exception wird mit raise geworfen
+#         # Man kann auch definieren, was genau die custom Exception wirft aber das ist jetzt out of scope
+#         else:
+#             loop = False
+#     except MyException as e:
+#         print("My Exception wurde gefangen")
+#         print(e)
+#
+#     finally:
+#         # Achtung!!! Das hier passiert immer, auch wenn try erfolgreich ist
+#         print(f"Die eingabe lautet: {name}")

@@ -53,10 +53,9 @@ def index(request):
     notices = notices.filter(pub_end__gte=timezone.now())
     # Schreibweise der DjangoDb Filter: <attribut>__[lte,gte,lt,gt,startswith,isnull] = <vergleichswert>
 
-    #ACHTUNG!!
-    #Alle Filter werden hier zu einer WHERE Bedingung zusammengebaut-> daher auch immer die selbstzuweiseung
-    #Erst bei nutzung in der VIEW werden die Daten geladen
-
+    # ACHTUNG!!
+    # Alle Filter werden hier zu einer WHERE Bedingung zusammengebaut-> daher auch immer die selbstzuweiseung
+    # Erst bei nutzung in der VIEW werden die Daten geladen
 
     context = {'notices': notices}  # Und damit kann ich die Tabelle in der HTML verwenden
     return render(request, 'demo/index.html', context)
@@ -83,9 +82,25 @@ def new_notice(request):
 
             notice.save()
 
-            return redirect('index')    #Für das redirecten werden auch die names aliase verwendet
+            return redirect('index')  # Für das redirecten werden auch die names aliase verwendet
             # die in den urls angegeben sind
 
     context = {'form': NoticeForm()}
     return render(request, 'demo/edit.html', context)
 
+
+def delete_notice(request, delete_id=None):
+    # Hier kommt die id zusammen mit dem request an
+    # Die id kommt aus der view weil dort in der href die id der aktuellen notice_id zugewiesen wurde
+    # Im Url wurde die id als parameter mit übergeben -> der übergabeparameter muss genauso heisen wie in der URL !!
+
+    if delete_id is not None:
+        try:
+            # Die notice mit der entsprechenden id wird aus der Datenbank tabelle gelöscht
+            notice = Notice.objects.get(id=delete_id)
+            notice.delete()
+        except Notice.DoesNotExist:
+            # Diese Exception kommt von Django und wird geschmissen, wenn die Anfrage auf die Tabelle ins leere geht
+            pass
+
+    return redirect('index')
