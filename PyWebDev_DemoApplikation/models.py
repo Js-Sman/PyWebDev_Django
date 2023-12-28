@@ -6,6 +6,7 @@ Die SQL Beschreibungen wer Datenbank werden somit von Django übernommen und kö
 """
 
 
+# ToDO: Neue User anlegen und Überprüfen ob das mit den ID's klappt
 # Create your models here.
 
 class Notice(models.Model):
