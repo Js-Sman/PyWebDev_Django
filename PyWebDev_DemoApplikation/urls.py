@@ -10,6 +10,10 @@ urlpatterns = [
     path('delete/<int:delete_id>', views.delete_notice, name='delete'),
     # In die url können in <> alle möglichen parameter mit eingebettet werden
     # Diese können in den views mit den href's beschrieben werden
+
+    # Für die REST Schnittstelle braucht es neue View-Funktionen, welche die Daten Serializieren
+    path('notice/', views.notice_list, name='notice_list'),
+    path('notice/<int:notice_id>', views.notice_detail, name='notice_detail')
 ]
 
 # der 1. Parameter in path() würde angeben was noch in der url steht → aktuell kommt man hier hin, indem man in die url
