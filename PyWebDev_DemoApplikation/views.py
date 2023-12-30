@@ -5,10 +5,12 @@ from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.utils import timezone
+from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 
 from PyWebDev_DemoApplikation.models import Notice
 from PyWebDev_DemoApplikation.forms import NoticeForm
+
 
 
 # Create your views here.
@@ -106,8 +108,14 @@ def delete_notice(request, delete_id=None):
            # print(f"{request.user.id} {notice.id}")
             if request.user.id == notice.id or request.user.is_staff:   # Das user Object ist auch in den views schon verfügbar
                 notice.delete()
+                messages.success(request, 'Notice wurde erfolgreich gelöscht')
+            else:
+                messages.warning(request, 'Keine Berechtigung die Notice zu löschen')
         except Notice.DoesNotExist:
             # Diese Exception kommt von Django und wird geschmissen, wenn die Anfrage auf die Tabelle ins leere geht
-            pass
+            messages.warning(request, f'Die Notice mit der ID {delete_id} wurde nicht gefunden')
+            # messages werden in view-funktionen generiert und zum request hinzugefügt
+            # dadurch stehen sie in der html datei als message objekt im context zur verfügung
+            # ohne, dass man sie extra übergeben muss
 
     return redirect('index')

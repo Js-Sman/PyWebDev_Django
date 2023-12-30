@@ -51,7 +51,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",  # Dieser Service bieter Decorator
     # an die den Session-Cookie überprüfen, damit können anmeldedaten
     # in einer Session als Authentifizierung verwendet werden
-    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware", # Dieser Service kümmert sich um die Messages und
+    # die verwaltung der Messagegruppen
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
