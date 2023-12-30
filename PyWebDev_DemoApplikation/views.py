@@ -72,7 +72,7 @@ def new_notice(request):
     if request.method == 'POST':
         form = NoticeForm(request.POST)
 
-        logger.info(f"Request in new notice: {request.method=} {request.path=} {form.is_valid()=}")
+        # logger.info(f"Request in new notice: {request.method=} {request.path=} {form.is_valid()=}")
 
         if form.is_valid():
             notice = Notice()
@@ -81,6 +81,8 @@ def new_notice(request):
             notice.notice_text = form.cleaned_data['notice_text']
             notice.pub_start = form.cleaned_data['pub_start']
             notice.pub_end = form.cleaned_data['pub_end']
+
+            notice.id = request.user.id
 
             notice.save()
 

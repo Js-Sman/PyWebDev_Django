@@ -19,9 +19,11 @@
     
         <h3>{{ notice.notice_title }}</h3>
         <p>{{ notice.notice_text }}</p>
+        <p style=" font-size: 12px; font-family: cursive">Nachrichten Id: {{ notice.id }}</p>
+        <p style=" font-size: 12px; font-family: cursive">Nachricht erstellt von User: {{user}}, Id: {{user.id}}</p>
         
         <!-- das User Object wirdimmer von Django an die Views weitergegeben, ohne dass es angegeben werden muss-->
-        {% if user.is_staff %}
+        {% if user.is_staff or user.id == notice.id %}
             <p> 
             <!-- hier wir für jeden "Medlung Löschen" button eine href generiert, welche die angegebene URL zusammenbaut-->
                 <a href="{% url 'delete' delete_id=notice.id %}"
