@@ -1,14 +1,17 @@
 import logging
 import time
-from datetime import datetime
 
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.utils import timezone
-from django.http import HttpResponse, HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
 
-from PyWebDev_DemoApplikation.models import Notice
 from PyWebDev_DemoApplikation.forms import NoticeForm
+from PyWebDev_DemoApplikation.models import Notice
+from PyWebDev_DemoApplikation.serializers import NoticeSerializer
 
 
 # Create your views here.
@@ -106,8 +109,66 @@ def delete_notice(request, delete_id=None):
            # print(f"{request.user.id} {notice.id}")
             if request.user.id == notice.id or request.user.is_staff:   # Das user Object ist auch in den views schon verfügbar
                 notice.delete()
+                messages.success(request, 'Notice wurde erfolgreich gelöscht')
+            else:
+                messages.warning(request, 'Keine Berechtigung die Notice zu löschen')
         except Notice.DoesNotExist:
             # Diese Exception kommt von Django und wird geschmissen, wenn die Anfrage auf die Tabelle ins leere geht
-            pass
+            messages.warning(request, f'Die Notice mit der ID {delete_id} wurde nicht gefunden')
+            # messages werden in view-funktionen generiert und zum request hinzugefügt
+            # dadurch stehen sie in der html datei als message objekt im context zur verfügung
+            # ohne, dass man sie extra übergeben muss
 
     return redirect('index')
+
+
+@csrf_exempt  # Für REST Schnittstellen muss man diese Decorator verwenden, da hier kein Token im Message Body enthalten ist
+def notice_list(request):
+    # Die Liste aller Notices kann über GET und POST request angesprochen werden
+    # Bei GET müssen die Daten Serializiert werden, um sie dem Client zu schicken,
+    # Bei POST kommen die Serializieren Daten vom Client und müssen deserialisiert werden
+
+    if request.method == 'GET':
+        notices = Notice.objects.all()
+        serializer = NoticeSerializer(notices, many=True)   # Heir wird jetzt nur die Serializer Classe
+        # und die entsprechende Meta Klasse angesprochen
+        return JsonResponse(serializer.data, safe=False)    # Hier wird jetzt kein HTML File übertragen sondern nur die Daten
+
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = NoticeSerializer(data=data) # In der JSON Antwort sind alle Informationen enthalten die
+        # der Serializer braucht um die Daten richtig zuzuordnen
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
+    else:
+        return JsonResponse({'error': 'GET or POST request required'}, status=400)
+
+
+@csrf_exempt
+def notice_detail(request, notice_id):
+    # Die Details einer Nachricht können mit GET, PUT oder DELETE verwendet werden
+
+    # Zuerst muss die Nachricht in der Tabelle überhaupt enthalten sein
+    try:
+        notice = Notice.objects.get(pk= notice_id)
+    except Notice.DoesNotExist:
+        return JsonResponse({'error': f'Notice {notice_id} not found'}, status=404)
+
+    if request.method == 'GET':
+        serializer = NoticeSerializer(notice) # Weil hier many nicht angegebn ist,
+        # wird defaultmäßig nur die entsprechende id serialisiert
+        return JsonResponse(serializer.data)
+    elif request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = NoticeSerializer(notice, data=data) # Hier muss jetzt die notice angegeben werden um nur diese id zu updaten
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
+    elif request.method == 'DELETE':
+        notice.delete()
+        return JsonResponse({'message': 'Notice was deleted successfully'}, status=204)
+    else:
+        return JsonResponse({'error': 'GET or POST request required'}, status=400)

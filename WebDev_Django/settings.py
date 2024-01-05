@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from urllib.request import localhost
+
+import rest_framework
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework', # Muss hinzugefügt werden wenn manb das djangorestframework installiert und benutzen will
     "django.contrib.admin",
     "django.contrib.auth",  # diese Applikation liefert standard authentifizierungs möglichkeiten und login seiten
     "django.contrib.contenttypes",
@@ -51,7 +55,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",  # Dieser Service bieter Decorator
     # an die den Session-Cookie überprüfen, damit können anmeldedaten
     # in einer Session als Authentifizierung verwendet werden
-    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware", # Dieser Service kümmert sich um die Messages und
+    # die verwaltung der Messagegruppen
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 

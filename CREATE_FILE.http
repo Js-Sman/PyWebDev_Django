@@ -1,0 +1,12 @@
+POST http://127.0.0.1:8000/demo/notices/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "notice_title": "Notice via API",
+    "notice_text": "This is a notice created via the API",
+    "pub_start": "2019-01-01T00:00:00Z",
+    "pub_end": "2119-12-31T23:59:59Z",
+    "user_id": 1
+}
+
+###
