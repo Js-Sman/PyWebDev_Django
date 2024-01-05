@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quadratzahlen</title>
+</head>
+<body>
+
+{% for message in messages %}
+    <div class="alert {{ message.tags }}" role="alert">
+    <!-- Die Kapselung der Nachricht in die Classe ist nur um die Bootstrap Stylings zu verwenden-->
+        {{ message }}
+    </div>
+{% endfor %}
+
+<p>{{ content|linebreaks }}</p>
+
+</body>
+</html>

@@ -23,5 +23,6 @@ urlpatterns = [
     path('demo/', include('PyWebDev_DemoApplikation.urls')),
     path("admin/", admin.site.urls),
     path("accounts/", include('django.contrib.auth.urls')),
+    path("exams/", include('exams.urls')),
 
 ]
