@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'PyWebDev_DemoApplikation.apps.PywebdevDemoapplikationConfig',  # Diese Zeile wurde von Django bei der
+    'PyWebDev_DemoApplikation.apps.PywebdevDemoapplikationConfig',
+    "Probeaufgabe.apps.ProbeaufgabeConfig"  # Diese Zeile wurde von Django bei der
     # Initialisierung der custom app hier hinzugefügt Das ist nötig um bei einer Migration diese Applikation auch zu
     # berücksichtigen und die migration durchzuführen
 ]
@@ -109,8 +110,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_REDIRECT_URL = "/demo/"
-LOGOUT_REDIRECT_URL = "/demo/"
+LOGIN_REDIRECT_URL = "/probeaufgabe/"
+LOGOUT_REDIRECT_URL = "/probeaufgabe/"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
