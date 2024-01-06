@@ -3,8 +3,10 @@ from unittest import case
 
 ############## Aufgabe "Hello World" #################
 
-# var = print("Hello World")
-# print(var)
+var = print("Hello World")
+print(var)
+
+
 
 ############## Aufgabe "Variablen Scope" #################
 #
@@ -415,24 +417,24 @@ from unittest import case
 
 
 ############## Aufgabe "JSON" #################
-# Das JSON Datenformat is wie ein Dictionary zu verstehen
-# Es wird zur standartisierten Serialisierung von Daten Objekten genutzt
-
-import json
-
-# von python zu JSON
-data = {} # Dictonary
-data['name'] = '<NAME>' # Für JSNO werden die meisten dinge als String dargestellt
-data['phone'] = '10123456789'
-data['age'] = 42    # Int und Float werden zu einem allgemeinem Numer format
-data['hobbies'] = ['<NAME>', '<NAME>', '<NAME>', '<NAME>']  # Listen oder Tupel werden zu arrays
-data_as_json = json.dumps(data, indent=3) # Ein Python Dict kann mit jason.dump umgewandelt werden
-print(data_as_json)
-
-# JSON dateien sind sehr einfach zu Serialisieren weil sie standartisiert sind und nur auf strings basieren
-# Für WebDev ist JSON daher beliebt für die Kommunikation zwischen Server und Client
-
-# Von JSON zu Python
-# Um einen Block als JSON zu definieren muss er in """ Anführungszeichen stehen
-json_data = json.loads(data_as_json)
-print(json_data)
+# # Das JSON Datenformat is wie ein Dictionary zu verstehen
+# # Es wird zur standartisierten Serialisierung von Daten Objekten genutzt
+#
+# import json
+#
+# # von python zu JSON
+# data = {} # Dictonary
+# data['name'] = '<NAME>' # Für JSNO werden die meisten dinge als String dargestellt
+# data['phone'] = '10123456789'
+# data['age'] = 42    # Int und Float werden zu einem allgemeinem Numer format
+# data['hobbies'] = ['<NAME>', '<NAME>', '<NAME>', '<NAME>']  # Listen oder Tupel werden zu arrays
+# data_as_json = json.dumps(data, indent=3) # Ein Python Dict kann mit jason.dump umgewandelt werden
+# print(data_as_json)
+#
+# # JSON dateien sind sehr einfach zu Serialisieren weil sie standartisiert sind und nur auf strings basieren
+# # Für WebDev ist JSON daher beliebt für die Kommunikation zwischen Server und Client
+#
+# # Von JSON zu Python
+# # Um einen Block als JSON zu definieren muss er in """ Anführungszeichen stehen
+# json_data = json.loads(data_as_json)
+# print(json_data)
