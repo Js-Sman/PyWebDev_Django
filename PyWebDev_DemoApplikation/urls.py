@@ -9,6 +9,6 @@ Hier ist der Eingang zu dieser Applikation. Die URL's die hier angelegt werden, 
 """
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.index_learning, name='index'),
 ]
 

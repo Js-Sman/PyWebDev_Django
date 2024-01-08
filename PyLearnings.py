@@ -4,12 +4,9 @@
 # print(var)
 #
 
-############# Aufgabe "Variablen Scope" #################
-# def read_variablen():
-#     """
-#     Innerhalb einer Funktion definierte Variablen sind auch nur innerhalb der Funktion zum Lesen und schreiben verfügbar.
-#     Auf globale Variablen kann innerhalb von Funktionen immer lesen zugegriffen werden
-#     """
+# ############ Aufgabe "Variablen Scope" ################# def read_variablen(): """ Innerhalb einer Funktion
+# definierte Variablen sind auch nur innerhalb der Funktion zum Lesen und schreiben verfügbar. Auf globale Variablen
+# kann innerhalb von Funktionen immer lesen zugegriffen werden """
 #
 #     lokale_variable = 1
 #     print(f'Innerhalb der Funktion "read_variablen": {lokale_variable=}')
