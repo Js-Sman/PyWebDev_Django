@@ -4,7 +4,8 @@ from django.db import migrations, models
 
 """
 Diese Datei wurde durch diesen Befehl generiert  -> manage.py makemigrations 
-Dadurch sind noch keine Tatsächlichen Änderungen in der Datenbank passiert es wurde nur diese Datei erzeugt
+Dadurch sind noch keine Tatsächlichen Änderungen in der Datenbank passiert es wurde nur diese Datei erzeugt.
+
 Um die Änderungen zu übertragen, muss noch dieser Befehl ausgeführt werden -> manage.py migrate
 """
 
@@ -16,6 +17,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.CreateModel(
             name="Notice",
+            # Jede generierte Tabelle hat als erstes Feld immer eine id. Das wird automatisch so generiert!
             fields=[
                 (
                     "id",

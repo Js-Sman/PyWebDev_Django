@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-# Das hier stellt die Hauptseite dar die unter dem local host aufgerufen wird
-# von hier aus werden die routings angegeben
-# jede applikation muss hier als url eingetragen werden um diese über die Hauptseite zu erreichen
+"""
+Das hier ist die Hauptseite. Von hier aus wird auf alle anderen Applikationen geroutet.
+Die URL's die hier im path() angegeben werden, führen zu der URL datei der entsprechenden Applikation.
+"""
 urlpatterns = [
     path('demo/', include('PyWebDev_DemoApplikation.urls')),
     path("admin/", admin.site.urls),

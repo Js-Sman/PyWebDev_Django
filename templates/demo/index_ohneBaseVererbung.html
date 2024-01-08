@@ -2,11 +2,10 @@
 Das hier ist die HTML beschreibung einer Seite.
 Sie wird mit DOCTYPE geschrieben, das ist eine erweiterung von basic HTML.
 
-Beim render aufruf von dieser Seite wurde ein context mit übergeben.
-Über diesen context kann auf die dict Variable now zugegriffen werden.
+Beim rendern von dieser Seite wurde ein context mit übergeben.
+Die Values des context Dictionaries können im HTML über die keys verwendet werden.
 
-forloop.counter -> ist eine inbuilt func von Django Doctype
-divisableby:X -> stellt modulo operator nach weil % schon reserviert ist
+
 -->
 
 
@@ -18,27 +17,31 @@ divisableby:X -> stellt modulo operator nach weil % schon reserviert ist
 </head>
 <body>
 
-<h1>
-    Index der Demo Applikation ohne Vererbung
-</h1>
-<p>
-    Uhrzeit: {{ now }}
-</p>
-
-
-{% if time.tm_hour < 12 %}
-    <p>Guten Morgen!</p>
-{%  elif time.tm_hour < 18 %}
-    <p>Guten Tag!</p>
-{%  else %}
-    <p>Guten Abend!</p>
-{% endif %}
-
-{% for value in list %}
-    {%  if forloop.counter|divisibleby:2 == 0 %}
-        <p> {{ value }}</p>
+    <h1>
+        Index der Demo Applikation ohne Vererbung
+    </h1>
+    <p>
+        Uhrzeit: {{ now }}
+    </p>
+    
+    
+    {% if time.tm_hour < 12 %}
+        <p>Guten Morgen!</p>
+    {%  elif time.tm_hour < 18 %}
+        <p>Guten Tag!</p>
+    {%  else %}
+        <p>Guten Abend!</p>
     {% endif %}
-{% endfor %}
+    
+    {% for value in list %}
+        <!--
+        forloop.counter -> ist eine inbuilt func von Django Doctype
+        divisableby:X -> stellt modulo operator nach weil % schon reserviert ist
+        -->
+        {%  if forloop.counter|divisibleby:2 == 0 %}
+            <p> {{ value }}</p>
+        {% endif %}
+    {% endfor %}
 
 </body>
 </html>

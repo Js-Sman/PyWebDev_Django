@@ -1,14 +1,16 @@
 {% extends "base_bootstrap.html" %}
 
+<!--Der Titel ist der Name des Tabs im Browser-->
 {% block title %}
     Index
 {% endblock %}
 
 {% block content %}
-    	<!--
-    	    in der base-html steht der content block im body tag 
-    	    deshalb landet alles, was ich hier im content block schreib auch im body der html
-    	-->
+    <!--
+    In der Eltern-html steht der content Block im body tag, daher landet alles, was ich hier im content block 
+    steht im body der html.
+    -->
+    
     <!--Die Klasse jumbotron ist in Bootstrap enthalten und sorgt einfach für ein gewisses Styling-->
     <div class="jumbotron">
         <h1 class="display-4"> News </h1>
@@ -22,10 +24,15 @@
         <p style=" font-size: 12px; font-family: cursive">Nachrichten Id: {{ notice.id }}</p>
         <p style=" font-size: 12px; font-family: cursive">Nachricht erstellt von User: {{user}}, Id: {{user.id}}</p>
         
-        <!-- das User Object wirdimmer von Django an die Views weitergegeben, ohne dass es angegeben werden muss-->
+        <!-- das User Object wird immer von Django an die Views weitergegeben, ohne dass es angegeben werden muss-->
         {% if user.is_staff or user.id == notice.id %}
             <p> 
-            <!-- hier wir für jeden "Medlung Löschen" button eine href generiert, welche die angegebene URL zusammenbaut-->
+            <!-- 
+            Mit einem href kann eine url dynamisch generiert werden. 
+            Dabei muss der name der URL angegeben werden, sowie er in der urls.py definiert ist. 
+            Weitere Variablen können mit Leerzeichen getrennt ebenso angefügt werden.
+            Diese weiteren Variablen sind in der urls.py in <> definiert und müssen an diesen namen zugewiesen werden!
+            -->
                 <a href="{% url 'delete' delete_id=notice.id %}"
                    
                    class="btn btn-danger">
@@ -33,7 +40,6 @@
                 </a>
             </p>
         {% endif %}
-        
     {% endfor %}
     
     {% if user.is_authenticated %}
@@ -43,8 +49,6 @@
                class="btn btn-secondary btn-lg" 
                role="button">Neue Nachricht</a>
         </p>
-        <!-- mit dem href verweist man auf eine url die in den urls.py hinterlegt ist 
-        -> hier spielt der name eine rolle -->
     {% endif %}
     
     <!-- So würde man mit reinem HTML ein Formular erzeugen 
@@ -67,8 +71,9 @@
     {%  endif %}
     
     {% block login %} 
-        
+        <!-- Der Login Block ist im Django-Template für Accounts hinterlegt und ist umhüllt mit speziellen Funktionen-->
         {% if user.is_anonymous %}
+            <!--Eine href kann auch direkt mit einem Eventobjekt wie einen Button verknüpft werden-->
             <a href="{% url 'login' %}" class="btn btn-primary">Anmelden</a>
         {%  endif %}
     

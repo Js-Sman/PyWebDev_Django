@@ -1,23 +1,24 @@
 from django.db import models
 
 """
-Für jede Datenbank wird in Django eine Classe angelegt oder Jeder Classe in den Models erzeugt eine Datenbank 
-Die SQL Beschreibungen wer Datenbank werden somit von Django übernommen und können Pythontypisch beschrieben werden 
+Für jede Datenbank muss in Django eine Classe angelegt werden.
+Die Spalten der Datenbank werden als Klassenattribute beschrieben und von Django in SQL Statements übersetzt.
+Name der Classe ist Name der Datenbank.
+
+Mit dem Befehlt "manage.py makemigrations" wird aus jeder Klasse eine Datei generiert die eine SQL Datenbank erzeugt
+Diese Datei wird im Ordner "migrations" dokumentiert.
+Mit dem Befehl "manage.py migrate" wird die Datenbank tatsächlich angelegt.
+
+Immer dann, wenn sich im Model einer Datenbank etwas ändert, muss zuerst eine Migration durchgeführt werden 
+um die Änderungen auf die Tabelle zu übertragen.
 """
 
 
-# ToDO: Neue User anlegen und Überprüfen ob das mit den ID's klappt
 # Create your models here.
-
 class Notice(models.Model):
-    # So wird die Datenbank angelegt
-    # Wenn man jetzt migriert wird eine Tabelle angelegt mit 4 Spalten entsprechend der Python beschreibung
-    # Die Tabelle heist so wie die Klasse
+
     notice_title = models.CharField(max_length=80)
     notice_text = models.TextField()
     pub_start = models.DateTimeField()
     pub_end = models.DateTimeField()
 
-    # Um die Tabelle jetzt wirklich anzulegen muss eine Migration durchgeführt werden
-    # Immer dann wenn sich die Python Klasse der Tabelle ändert muss eine neue Migration gemacht werden um die SQL
-    # Tabelle entsprechend aktuell zu halten

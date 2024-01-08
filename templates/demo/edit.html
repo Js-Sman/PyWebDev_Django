@@ -10,13 +10,22 @@ Edit
     <!--Weil hier als method Post angegeben ist, weis Django dass wenn die Form verlassen wird ein Post Request 
     an die seite geschickt wird von der die Form aufgerufen wurde-->
         
-    {% csrf_token %}
-        <!-- Mit diesem Tag wird die Form mit einem csfr token versehen der aus der Anfrage geneert wird und 
-         zum Validieren der Post request verwendet wird -> immer immer immer angeben !!!!! --> 
+        {% csrf_token %}
+        <!-- 
+        Mit diesem Tag wird die Form mit einem csfr token versehen, der aus der Anfrage generiert wird und 
+        zum Validieren der Post request verwendet wird
+        --> 
         
+        <!--
+        Die Form kann hier als ganz normales Dictionary Element verwendet werden.
+        Mit der endung as_p wird für jedes Attribut der Form ein neuer Paragraf generiert.
+        -->
         {{ form.as_p }}
-        <!-- damit werden alle Felder entsprechend initialisiert und gerendert wie sie in der Klasse beschrieben sind-->
         
+        <!--
+        Ein Button muss innerhalb des form-tags stehen, um im Kontext der post Methode 
+        zurück zur aufrufenden Seite zu routen.
+        -->
         <input class="btn btn-primary"
                type="submit"
                value="Speichern">

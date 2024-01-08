@@ -41,12 +41,14 @@
   </div>
 </nav>
 
-<!--HTML ist Reihenfolgen sensitiv → hier kommt zuerst die NavBar dann der Body...-->
+<!--HTML ist Reihenfolgen sensitiv → hier kommt zuerst die NavBar dann der Body-->
 <body>
-<!-- Messages sind generierte Meldungen aus den View-Funktionen und sollten auch jeder Seite an derselben Stelle 
-angezeigt werden, daher bauen wir sie auch in die Base html ein 
-Wenn in den View-Funktionen Messages generiert werden sund dem request mitgegeben
- werden stehen sie hier als context datei zur verfügung -->
+<!-- 
+Messages sind generierte Meldungen aus den View-Funktionen und sollten auf jeder Seite an derselben Stelle 
+angezeigt werden, daher bauen wir sie auch in die Base html ein.
+Wenn in den View-Funktionen Messages generiert werden und dem request mitgegeben
+werden stehen sie hier als context Objekt zur verfügung 
+-->
 {% for message in messages %}
     <div class="alert {{ message.tags }}" role="alert">
     <!-- Die Kapselung der Nachricht in die Classe ist nur um die Bootstrap Stylings zu verwenden-->
